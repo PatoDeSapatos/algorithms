@@ -20,17 +20,19 @@ console.log(`The target is: ${target} \nAnd the array length is: ${length} \n---
 let offset = 0;
 let limit = array.length;
 let timer = Date.now();
-while (true) {
-    const element = Math.round( (offset+limit)/2 );
+while (offset <= limit) {
+    const middle = Math.round( (offset+limit)/2 );
 
-    if ( array[ element ] > target ) {
-        limit = element;
-    } else if ( array[element] < target ) {
-        offset = element;
-    } else {
-        console.log(`Target Found: ${array[ element ]}`);
+    if( array[ middle ] == target ) {
+        console.log(`Target Found: ${array[ middle ]}`);
         break;
     }
+
+    if ( array[ middle ] > target ) {
+        limit = middle - 1;
+    } else if ( array[middle] < target ) {
+        offset = middle + 1;
+    } 
     iterations++;
 }
 
